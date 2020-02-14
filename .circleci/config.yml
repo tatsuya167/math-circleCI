@@ -33,7 +33,7 @@ jobs:
 
       # - run:
       #     name: install-npm-wee
-      #     command: npm install
+      #     command: npm installl
 
       - save_cache:
           paths:
