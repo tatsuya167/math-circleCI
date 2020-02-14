@@ -9,7 +9,7 @@ jobs:
 
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:10.16.3
       - image: mongo:4.2.0
 
       # Specify service dependencies here if necessary
@@ -35,9 +35,9 @@ jobs:
       
 
       - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
       - run:
