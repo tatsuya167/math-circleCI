@@ -5,17 +5,18 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/mern-starter
+
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+      - image: mongo:4.2.0
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/mern-starter
-
+    
     steps:
       - checkout
       - run:
@@ -31,9 +32,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # - run:
-      #     name: install-npm-wee
-      #     command: npm installl
+      - run:
+          name: install-npm-wee
+          command: npm install
 
       - save_cache:
           paths:
@@ -43,7 +44,7 @@ jobs:
       # run tests!
       - run:
           name: test
-          command: npm run test
+          command: npm test
 
       - run: # run coverage report
           name: code-coverage
